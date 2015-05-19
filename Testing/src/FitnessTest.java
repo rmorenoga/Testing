@@ -15,9 +15,9 @@ public class FitnessTest {
 //		float phase = -2.2263575f;
 		//float phase =  0.3f*(float) Math.PI;
 		
-		float ampli = -0.838f;
-		float offset = -0.36996028285364746f;
-		float phase =  -0.7120866189924508f*(float) Math.PI;
+		float ampli = -1.0f;
+		float offset = -0.2793447720873333f;
+		float phase =  -0.7052553367127218f*(float) Math.PI;
 		
 		// Pack Floats into one String data signal
 		FloatWA ControlParam = new FloatWA(3);
@@ -34,7 +34,7 @@ public class FitnessTest {
 		int[] orientation = new int[]{1,0,1,0,1,0,1,0};
 		
 		// Simulation Parameters
-		int MaxTime = 40;
+		int MaxTime = 100;
 		
 		// Pack Integers into one String data signal
 		IntWA NumberandOri = new IntWA(Numberofmodules + 2);
@@ -50,7 +50,7 @@ public class FitnessTest {
 		
 		// Maze Parameters (Already a string)
 		//char[] mazeseq = new char[]{'s','l','s','r','l','b'};
-		char[] mazeseq = new char[]{'s','l'};
+		char[] mazeseq = new char[]{'b'};
 		CharWA strSeq=new CharWA(1);
 		strSeq.setArray(mazeseq);
 		
