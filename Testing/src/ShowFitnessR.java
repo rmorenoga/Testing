@@ -28,7 +28,7 @@ public class ShowFitnessR {
 		int[] orientation = new int[]{0,1,0,1,0,1,0,1};
 		
 		// Simulation Parameters
-		int MaxTime = 100;
+		int MaxTime = 40;
 		
 		// Pack Integers into one String data signal
 		IntWA NumberandOri= new IntWA(Numberofmodules+3);
