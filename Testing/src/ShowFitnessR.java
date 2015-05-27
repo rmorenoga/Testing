@@ -25,7 +25,7 @@ public class ShowFitnessR {
 		
 		// Morphology Parameters
 		int Numberofmodules = 8;
-		int[] orientation = new int[]{0,1,0,1,0,1,0,1};
+		int[] orientation = new int[]{1,0,1,0,1,0,1,0};
 		
 		// Simulation Parameters
 		int MaxTime = 40;
