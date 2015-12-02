@@ -15,9 +15,9 @@ public class FitnessTest {
 //		float phase = -2.2263575f;
 		//float phase =  0.3f*(float) Math.PI;
 		
-		float ampli = -1.0f;
-		float offset = -0.2793447720873333f;
-		float phase =  -0.7052553367127218f*(float) Math.PI;
+		float ampli = (float) -0.9922359744889865;
+		float offset = (float) 0.10689492948245015;
+		float phase = (float) -0.6575482696047599*(float) Math.PI;
 		
 		// Pack Floats into one String data signal
 		FloatWA ControlParam = new FloatWA(3);
@@ -31,10 +31,10 @@ public class FitnessTest {
 		
 		// Morphology Parameters
 		int Numberofmodules = 8;
-		int[] orientation = new int[]{1,0,1,0,1,0,1,0};
+		int[] orientation = new int[]{0,1,0,1,0,1,0,1};
 		
 		// Simulation Parameters
-		int MaxTime = 100;
+		int MaxTime = 40;
 		
 		// Pack Integers into one String data signal
 		IntWA NumberandOri = new IntWA(Numberofmodules + 2);
