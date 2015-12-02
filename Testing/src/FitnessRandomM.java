@@ -28,7 +28,7 @@ public class FitnessRandomM {
 		int[] orientation = new int[] { 1, 0, 1, 0, 1, 0, 1, 0 };
 
 		// Simulation Parameters
-		int MaxTime = 40;
+		int MaxTime = 120;
 
 		// Pack Integers into one String data signal
 		IntWA NumberandOri = new IntWA(Numberofmodules + 2);
