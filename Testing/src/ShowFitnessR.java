@@ -44,7 +44,8 @@ public class ShowFitnessR {
 
 		// Maze Parameters (Already a string)
 	    //char[] mazeseq = new char[]{'b'};
-		char[] mazeseq = new char[] { 's', 'l', 's', 'b', 's', 'r', 's', 's', 'r', 's', 'b', 's', 'l', 's', 's', 'l', 's', 'b', 's', 'r', 's'  };
+		//char[] mazeseq = new char[] { 's', 'l', 's', 'b', 's', 'r', 's', 's', 'r', 's', 'b', 's', 'l', 's', 's', 'l', 's', 'b', 's', 'r', 's'  };
+		char[] mazeseq = new char[] { 's', 'l', 's', 's','r','s','b'};
 		CharWA strSeq = new CharWA(1);
 		strSeq.setArray(mazeseq);
 
