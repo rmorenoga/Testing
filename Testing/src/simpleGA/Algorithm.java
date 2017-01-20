@@ -29,9 +29,9 @@ public class Algorithm {
         // Loop over the population size and create new individuals with
         // crossover
         for (int i = elitismOffset; i < pop.size(); i++) {
-            Individual indiv1 = tournamentSelection(pop);
-            Individual indiv2 = tournamentSelection(pop);
-            Individual newIndiv = crossover(indiv1, indiv2);
+            IndividualB indiv1 = tournamentSelection(pop);
+            IndividualB indiv2 = tournamentSelection(pop);
+            IndividualB newIndiv = crossover(indiv1, indiv2);
             newPopulation.saveIndividual(i, newIndiv);
         }
 
@@ -44,8 +44,8 @@ public class Algorithm {
     }
 
     // Crossover individuals
-    private static Individual crossover(Individual indiv1, Individual indiv2) {
-        Individual newSol = new Individual();
+    private static IndividualB crossover(IndividualB indiv1, IndividualB indiv2) {
+        IndividualB newSol = new IndividualB();
         // Loop through genes
         for (int i = 0; i < indiv1.size(); i++) {
             // Crossover
@@ -59,7 +59,7 @@ public class Algorithm {
     }
 
     // Mutate an individual
-    private static void mutate(Individual indiv) {
+    private static void mutate(IndividualB indiv) {
         // Loop through genes
         for (int i = 0; i < indiv.size(); i++) {
             if (Math.random() <= mutationRate) {
@@ -71,7 +71,7 @@ public class Algorithm {
     }
 
     // Select individuals for crossover
-    private static Individual tournamentSelection(Population pop) {
+    private static IndividualB tournamentSelection(Population pop) {
         // Create a tournament population
         Population tournament = new Population(tournamentSize, false);
         // For each place in the tournament get a random individual
@@ -80,7 +80,7 @@ public class Algorithm {
             tournament.saveIndividual(i, pop.getIndividual(randomId));
         }
         // Get the fittest
-        Individual fittest = tournament.getFittest();
+        IndividualB fittest = tournament.getFittest();
         return fittest;
     }
 }

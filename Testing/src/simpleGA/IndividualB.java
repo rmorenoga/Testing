@@ -1,6 +1,6 @@
 package simpleGA;
 
-public class Individual {
+public class IndividualB {
 
     static int defaultGeneLength = 64;
     private byte[] genes = new byte[defaultGeneLength];

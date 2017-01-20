@@ -2,19 +2,19 @@ package simpleGA;
 
 public class Population {
 
-    Individual[] individuals;
+    IndividualB[] individuals;
 
     /*
      * Constructors
      */
     // Create a population
     public Population(int populationSize, boolean initialise) {
-        individuals = new Individual[populationSize];
+        individuals = new IndividualB[populationSize];
         // Initialise population
         if (initialise) {
             // Loop and create individuals
             for (int i = 0; i < size(); i++) {
-                Individual newIndividual = new Individual();
+                IndividualB newIndividual = new IndividualB();
                 newIndividual.generateIndividual();
                 saveIndividual(i, newIndividual);
             }
@@ -22,12 +22,12 @@ public class Population {
     }
 
     /* Getters */
-    public Individual getIndividual(int index) {
+    public IndividualB getIndividual(int index) {
         return individuals[index];
     }
 
-    public Individual getFittest() {
-        Individual fittest = individuals[0];
+    public IndividualB getFittest() {
+        IndividualB fittest = individuals[0];
         // Loop through individuals to find fittest
         for (int i = 0; i < size(); i++) {
             if (fittest.getFitness() <= getIndividual(i).getFitness()) {
@@ -44,7 +44,7 @@ public class Population {
     }
 
     // Save individual
-    public void saveIndividual(int index, Individual indiv) {
+    public void saveIndividual(int index, IndividualB indiv) {
         individuals[index] = indiv;
     }
 }
