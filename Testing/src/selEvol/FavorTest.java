@@ -1,24 +1,31 @@
 package selEvol;
 
+import unalcol.optimization.real.mutation.Mutation;
 import unalcol.optimization.real.mutation.PickComponents;
+import unalcol.random.real.StandardGaussianGenerator;
 import unalcol.types.collection.vector.Vector;
 
 public class FavorTest {
 
 	public static void main(String[] args) {
 		PickComponents test = new FavorFirst();
-		int[] indices = test.get(210);
+		int[] indices = test.get(105);
 //		int[] indices = new int[20];
 //		for (int i: indices){
 //			indices[i] = 0;
 //		}
-		System.out.println("Number of modules = "+indices.length/5);
+		System.out.println("Number of modules = "+indices.length/35);
 		System.out.println("Indices chosen");
 		for (int i=0;i<indices.length;i++){
-			System.out.print(indices[i]+" "+(i*7) + "-" + (i*7+6)+"\n");
+			System.out.print(indices[i]+" ");
 		}
-			
-		double[] x = new double[140];
+		System.out.println();
+		Mutation mtest = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),test,5,7);
+		double[] x = new double[105];
+		mtest.apply(x);
+		
+		
+		/*double[] x = new double[140];
 		double[] y = new double[140];
 		for (int i=0;i<x.length;i++){
 			x[i]=i;
@@ -39,7 +46,7 @@ public class FavorTest {
 		}
 	
 		
-		
+		*/
 		
 		
 		
