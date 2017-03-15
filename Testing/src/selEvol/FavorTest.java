@@ -8,20 +8,19 @@ import unalcol.types.collection.vector.Vector;
 public class FavorTest {
 
 	public static void main(String[] args) {
-		PickComponents test = new FavorFirst();
-		int[] indices = test.get(105);
+		PickComponents test = new FavorFirst(42,7,6,true);
+		int[] indices = test.get(84);
 //		int[] indices = new int[20];
 //		for (int i: indices){
 //			indices[i] = 0;
 //		}
-		System.out.println("Number of modules = "+indices.length/35);
 		System.out.println("Indices chosen");
 		for (int i=0;i<indices.length;i++){
 			System.out.print(indices[i]+" ");
 		}
 		System.out.println();
-		Mutation mtest = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),test,5,7);
-		double[] x = new double[105];
+		Mutation mtest = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),test,7,6);
+		double[] x = new double[84];
 		mtest.apply(x);
 		
 		
