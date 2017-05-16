@@ -8,8 +8,8 @@ import unalcol.types.collection.vector.Vector;
 public class FavorTest {
 
 	public static void main(String[] args) {
-		PickComponents test = new FavorFirst(7,6,true,10);
-		int[] indices = test.get(94);
+		PickComponents test = new FavorFirst(5,7,false,10);
+		int[] indices = test.get(80);
 //		int[] indices = new int[20];
 //		for (int i: indices){
 //			indices[i] = 0;
@@ -19,9 +19,12 @@ public class FavorTest {
 			System.out.print(indices[i]+" ");
 		}
 		System.out.println();
-		Mutation mtest = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),test,7,6,10);
-		double[] x = new double[94];
+		Mutation mtest = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),test,5,7,10);
+		double[] x = new double[80];
 		mtest.apply(x);
+		
+		DEXOver xover = new DEXOver(0.9, new StandardGaussianGenerator(),80);
+		xover.apply(x,x,x,x);
 		
 		
 		/*double[] x = new double[140];
