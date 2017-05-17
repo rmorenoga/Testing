@@ -23,7 +23,7 @@ public class FavorTest {
 		double[] x = new double[80];
 		mtest.apply(x);
 		
-		DEXOver xover = new DEXOver(0.9, new StandardGaussianGenerator(),80);
+		DEXOver xover = new DEXOver(0.9,0.9, new StandardGaussianGenerator(),80);
 		xover.apply(x,x,x,x);
 		
 		

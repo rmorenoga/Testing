@@ -1,14 +1,9 @@
 package selEvol;
 
 import unalcol.search.solution.Solution;
+import unalcol.search.variation.Variation_n_1;
 
-public class Variation_4_1<T> extends Variation_4_m<T> {
-	
-	private int c =0;
-	@Override
-	public int range_arity() {
-		return 1;
-	};
+public class Variation_4_1<T> extends Variation_n_1<T> {
 
 	/**
 	 * Apply the genetic operator to the four individuals in the population of
@@ -22,15 +17,13 @@ public class Variation_4_1<T> extends Variation_4_m<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] apply(T... parents) {
-		//System.out.println("Parents "+parents.length);
-		//c=c+1;
-		//System.out.println("c= "+c);
+		// System.out.println("Parents "+parents.length);
+		// c=c+1;
+		// System.out.println("c= "+c);
 		int n = parents.length >> 2;
 		T[] v = (T[]) (new Object[n]);
-		for (int i = 0; i < n; i += 4) {
-			T[] p = apply(parents[i], parents[i + 1], parents[i + 2], parents[i + 3]);
-			v[i] = p[0];
-		}
+		for (int i = 0; i < n; i += 4)
+			v[i] = apply(parents[i], parents[i + 1], parents[i + 2], parents[i + 3]);
 		return v;
 	}
 
@@ -46,16 +39,32 @@ public class Variation_4_1<T> extends Variation_4_m<T> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Solution<T>[] apply(Solution<T>... parents) {
-		//System.out.println("Parents "+parents.length);
-		//c=c+1;
-		//System.out.println("c= "+c);
+		// System.out.println("Parents "+parents.length);
+		// c=c+1;
+		// System.out.println("c= "+c);
 		int n = parents.length >> 2;
 		Solution<T>[] v = new Solution[n];
-		for (int i = 0; i < n; i += 4) {
-			Solution<T>[] p = apply(parents[i], parents[i + 1], parents[i + 2], parents[i + 3]);
-			v[i] = p[0];
-		}
+		for (int i = 0; i < n; i += 4)
+			v[i] = apply(parents[i], parents[i + 1], parents[i + 2], parents[i + 3]);
 		return v;
+	}
+
+	public T apply(T x1, T x2, T x3, T x4) {
+		return apply(new Solution<T>(x1), new Solution<T>(x2), new Solution<T>(x3), new Solution<T>(x4)).object();
+	}
+
+	public Solution<T> apply(Solution<T> x1, Solution<T> x2, Solution<T> x3, Solution<T> x4) {
+		return new Solution<T>(apply(x1.object(), x2.object(), x3.object(), x4.object()), x1.tags(), false);
+	}
+
+	/**
+	 * Return the genetic operator arity
+	 * 
+	 * @return the genetic operator arity
+	 */
+	@Override
+	public int arity() {
+		return 4;
 	}
 
 }

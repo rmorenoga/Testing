@@ -54,7 +54,7 @@ public class HAEAS {
 
 
 		// Search Space Definition
-		int DIM = 10;
+		int DIM = 100;
 		double[] min = DoubleArray.create(DIM, -10);
 		double[] max = DoubleArray.create(DIM, 10);
 
@@ -72,7 +72,7 @@ public class HAEAS {
 		//IntensityMutation variation = new GaussianMutation(0.1, null, adapt);
 		//PickComponents favor = new FavorFirst(7,6,true,0);
 		//Mutation variation = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),favor,7,6,0);
-		DEXOver xover = new DEXOver(0.9,0.2,new StandardGaussianGenerator(),DIM);
+		DEXOver xover = new DEXOver(0.7,0.9,new StandardGaussianGenerator(),DIM);
 		IntensityMutation variation = new GaussianMutation(0.1);
 
 		int POPSIZE = 20;
