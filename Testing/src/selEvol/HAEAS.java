@@ -30,6 +30,7 @@ import unalcol.optimization.real.mutation.PickComponents;
 import unalcol.optimization.real.testbed.Schwefel;
 import unalcol.optimization.real.xover.LinearXOver;
 import unalcol.random.real.StandardGaussianGenerator;
+import unalcol.random.real.StandardUniformGenerator;
 import unalcol.search.Goal;
 import unalcol.search.population.IterativePopulationSearch;
 import unalcol.search.population.Population;
@@ -54,7 +55,7 @@ public class HAEAS {
 
 
 		// Search Space Definition
-		int DIM = 100;
+		int DIM = 2;
 		double[] min = DoubleArray.create(DIM, -10);
 		double[] max = DoubleArray.create(DIM, 10);
 
@@ -72,14 +73,14 @@ public class HAEAS {
 		//IntensityMutation variation = new GaussianMutation(0.1, null, adapt);
 		//PickComponents favor = new FavorFirst(7,6,true,0);
 		//Mutation variation = new FFirstIntMutation(0.1,new StandardGaussianGenerator(),favor,7,6,0);
-		DEXOver xover = new DEXOver(0.7,0.9,new StandardGaussianGenerator(),DIM);
-		IntensityMutation variation = new GaussianMutation(0.1);
+		DEXOver xover = new DEXOver(0.9,0.9,new StandardUniformGenerator(),DIM);
+		//IntensityMutation variation = new GaussianMutation(0.1);
 
 		int POPSIZE = 20;
 		int MAXITERS = 100;
-		Variation[] opers = new Variation[2];
+		Variation[] opers = new Variation[1];
 		opers[0] = xover;
-		opers[1] = variation;
+		//opers[1] = variation;
 
 		SimpleHaeaOperators operators = new SimpleHaeaOperators(opers);
 		Selection selection = new Tournament(4, new ModifiedElitism(1.0, 0.0));

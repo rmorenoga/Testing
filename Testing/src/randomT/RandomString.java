@@ -23,7 +23,7 @@ public class RandomString {
 		//int out  = r.next();
 			
 		int[] out = r.generate(3);
-		
+		System.out.println("Random: "+r.generate());
 		// Brute Force
 //		while(out[1]==out[0])
 //		{
