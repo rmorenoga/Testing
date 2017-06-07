@@ -10,7 +10,7 @@ public class FavorTest {
 	public static void main(String[] args) {
 		FavorFirst test = new FavorFirst(5,7,false,2);
 		int[] indices = test.get(72);
-		double[] favorvector = test.getFavorVector(indices);
+		double[] favorvector = test.getFavorVector(72,indices);
 //		int[] indices = new int[20];
 //		for (int i: indices){
 //			indices[i] = 0;

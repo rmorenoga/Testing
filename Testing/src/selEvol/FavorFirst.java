@@ -70,7 +70,9 @@ public class FavorFirst implements PickComponents{
 	}
 
 	
-	public double[] getFavorVector(int[] indices){
+	public double[] getFavorVector(int DIMENSION, int[] indices){
+		d = DIMENSION-extraparam;
+		numberofmodules = d/numberofparameters;
 		double[] probvector = new double[numberofmessages];
 		for (int i=0;i<probvector.length;i++){
 			probvector[i] = Math.exp(-i*0.5);
@@ -82,11 +84,6 @@ public class FavorFirst implements PickComponents{
         	favorvector[indices[i]]=1;
         	System.out.println("Extra: Position= "+favorvector[i]);
         }
-		
-		if(numberofmodules == -1){
-			System.err.println("Error: Please calculate the respective indices vector first");
-			System.exit(-1);
-		}
 		int k = 0;
         for( int i=extraparam; i<indices.length; i++ ){
         	if (i>=numberofmodules*pack*(k+1)+extraparam){
