@@ -15,10 +15,11 @@ public class FFirstIntMutation extends Mutation{
 	private int numberofmodules;
 	private double[] favorvector;
 	private int extraparam;
+	//private FavorFirst components;
 	
 	public FFirstIntMutation( double sigma, DoubleGenerator g, 
-            PickComponents components, int numberofmessages, int pack, int extraparam){
-		super(components);
+            FavorFirst components, int numberofmessages, int pack, int extraparam){
+		super(components); 
 		this.sigma = sigma;
 		this.g = g;
 		this.numberofmessages = numberofmessages;
@@ -32,10 +33,10 @@ public class FFirstIntMutation extends Mutation{
 			System.err.println("Warning: Genotype dimension does not match the number of modules");
 		}
 		numberofmodules = d/(numberofmessages*pack);
-		favorvector = new double[numberofmessages];
-		for (int i=0;i<favorvector.length;i++){
-			favorvector[i] = Math.exp(-i*0.5);
-		}
+		favorvector = ((FavorFirst)components).getProbvector();
+//		for (int i=0;i<favorvector.length;i++){
+//			favorvector[i] = Math.exp(-i*0.5);
+//		}
         if( components != null ){
             if( delta != null && delta.length == DIMENSION ){
                 for( int i=0; i<indices.length; i++){
