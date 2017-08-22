@@ -13,4 +13,4 @@ function [Fr, Ft, Fp]=forceField()
 //        
 //    These components can be translated to cartesian using "sph2cartvect"
 
- endfunction
+endfunction
