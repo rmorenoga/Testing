@@ -41,14 +41,12 @@ champ(x,z,Xcomp',Zcomp')
 
 for i = -0.5:0.1:0.5
     for j = -0.5:0.1:0.5 
-        if i == 0 & j == i then
-        
-        else
+        if i ~= 0 | j ~= 0 then
 //Point which the force will be calculated at
 xf = [i 0 j]
 
 //Direction of the moment of the second magnet
-m1dir = [0 0 -1]
+m1dir = [0 0 1]
 
 //Calculate the magnitude of the force at point x
 mag=dipForce(xf,m1dir,rotaxis,rotangle,tx,ty,tz,Br,D,t)
