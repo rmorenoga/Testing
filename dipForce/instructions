@@ -1,0 +1,50 @@
+Using Paraview 5.4
+
+Output files:
+dipField.py -> bField.csv
+2dipField.py -> 2bField.csv
+udotB.py -> udotB.csv
+
+Open csv in ParaView
+
+Apply (default properties checked)
+ - Detect Numeric Columns
+ - Use string Delimiter
+ - Have headers
+ - Field Delimiter Characters = ,
+
+Filters -> TableToPoints -> Match columns to x y z
+Apply
+
+To see the Magnetic field (B) as 3D vectors:
+
+Filters -> Calculator
+Change Result Array Name to "BField"
+Input: Bx*iHat + By*jHat + Bz*kHat
+
+Filters -> Glyph
+Glyph Type: Arrow
+Scalars: None
+Vectors: BField
+Apply
+
+Click in the RenderView and then activate the Glyph filter in the pipeline browser (the eye at the left)
+Coloring: GlyphVector
+
+(Extra: Do a cut in the plane YZ)
+Filter -> Clip
+Origin: 0 0 0
+Normal: 1 0 0 (normal to the plane to cut)
+Check that the coloring is set to GlyphVector
+
+Experimental: To try and get the gradient
+Select TableToPoints in the Pipeline Browser
+Filters -> GradientOfUnstructuredDataSet
+Scalar Array: mdotB
+Result Array Name: f
+Apply
+
+
+
+
+
