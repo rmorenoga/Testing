@@ -46,26 +46,15 @@ for i = -0.5:0.1:0.5
 xf = [i 0 j]
 
 //Direction of the moment of the second magnet
-m1dir = [0 0 1]
+m1dir = [-1 0 1]
 
 //Calculate the magnitude of the force at point x
 mag=dipForce(xf,m1dir,rotaxis,rotangle,tx,ty,tz,Br,D,t)
 
 disp(mag,"mag")
 
-//Caculate the gradient of the force at point x
-J = numderivative(list(dipForce,m1dir,rotaxis,rotangle,tx,ty,tz,Br,D,t), xf)
-
-disp(J,"J")
-
-//Calculate the norm of the gradient vector
-Jn = J./norm(J)
-
-disp(Jn,"Jn")
-
-//Calculate the force vector at point x with the magnitude and unitary gradient vector
-fx = mag.*Jn
-disp(fx,"fx")
+//Caculate the gradient of the dotproduct at point x which is the force  at that point
+fx = numderivative(list(dipForce,m1dir,rotaxis,rotangle,tx,ty,tz,Br,D,t), xf)
 
 //Display an arrow in a 2d plot showing the vector force
 

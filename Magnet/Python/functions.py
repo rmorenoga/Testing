@@ -41,6 +41,16 @@ def dipMomentVec(m, i, j, k):
 	mVec = (m/norm) * np.array([i,j,k])
 
 	return mVec
+
+def dipMomentVec2(m, dirvec):
+	"""
+	Returns a vector given dipole moment magnitude
+	The vector has direction dirvec (a numpy array)
+	"""
+	norm =  np.linalg.norm(dirvec)
+	mVec = (m/norm) * dirvec
+
+	return mVec
 	
 def dipField(mVec, pVec, r0Vec):
 	"""
@@ -55,4 +65,26 @@ def dipField(mVec, pVec, r0Vec):
 	B = (u0/4*pi)*((3*(mVec.dot(rVec)*rVec)/r**5)-mVec/r**3)
 	
 	return B[0], B[1], B[2], B
+
+def dipfield2(mVec,r0Vec,x,y,z):
+	
+	rVecx = x - r0Vec[0]
+	rVecy = y - r0Vec[1]
+	rVecz = z - r0Vec[2]
+
+	r = (rVecx**2 + rVecy**2 + rVecz**2)**0.5
+
+	mdr = dotproduct(mVec[0],mVec[1],mVec[2],rVecx,rVecy,rVecz)
+
+	Bx = (u0/4*pi)*((3*(mdr*rVecx)/(r**5))-mVec[0]/(r**3)) 
+	By = (u0/4*pi)*((3*(mdr*rVecy)/(r**5))-mVec[1]/(r**3))
+	Bz = (u0/4*pi)*((3*(mdr*rVecz)/(r**5))-mVec[2]/(r**3))
+
+	return Bx, By, Bz
+
+def dotproduct(x1,y1,z1,x2,y2,z2):
+	
+	m = x1*x2 + y1*y2 + z1*z2
+
+	return m
 
