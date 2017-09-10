@@ -3,7 +3,7 @@ function [rcomp,thetacomp]=dipolefield(r,theta,Br,D,t)
     // pointing in the z direction at 0,0,0
     // r in meters, theta in radians are parameters
     // Br in Gauss
-    // D and t in inches
+    // D and t in meters
 
     // u0 is a universal constant u0 = 4*%pi*1e-7
     

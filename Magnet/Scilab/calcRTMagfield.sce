@@ -7,10 +7,10 @@ function [Xcomp,Ycomp,Zcomp]=calcRTMagfield(x,y,z,rotaxis,rotangle,tx,ty,tz,Br,D
     //Xcomp,Ycomp,Zcomp The components of the vector field in each point x,y,z
     
     //Rotate the original points in the opposite direction
-    [RX,RY,RZ] = rotate3d(x,y,z,[rotaxis -angle])
+    [RX,RY,RZ] = rotate3d(x,y,z,[rotaxis -rotangle])
     
     //Rotate the translation in the opposite direction
-    [rtx,rty,rtz] = rotate3d(tx,ty,tz,[rotaxis -angle])
+    [rtx,rty,rtz] = rotate3d(tx,ty,tz,[rotaxis -rotangle])
     
     //Apply the rotated translation to the rotated points
     RX = RX - rtx
@@ -27,6 +27,6 @@ function [Xcomp,Ycomp,Zcomp]=calcRTMagfield(x,y,z,rotaxis,rotangle,tx,ty,tz,Br,D
     [rawXcomp, rawYcomp, rawZcomp]=sph2cartvect(Tcomp, 0, Rcomp,T,P);
     
     //Rotate the vector components in the original direction
-    [Xcomp,Ycomp,Zcomp] = rotate3d(rawXcomp,rawYcomp,rawZcomp,[rotaxis angle])
+    [Xcomp,Ycomp,Zcomp] = rotate3d(rawXcomp,rawYcomp,rawZcomp,[rotaxis rotangle])
     
 endfunction

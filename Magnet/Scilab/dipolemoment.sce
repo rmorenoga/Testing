@@ -3,7 +3,7 @@ function m = dipolemoment(Br,D,t)
 // cylindrical magnet
 // u0 is a universal constant u0 = 4*%pi*1e-7
 // Br in Gauss 
-// D and t in inches 
+// D and t in meters 
 
     u0 = (4e-7)*%pi
     //m = (2*%pi*(r.^3)*Br)/u0 
