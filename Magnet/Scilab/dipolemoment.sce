@@ -10,6 +10,12 @@ function m = dipolemoment(Br,D,t)
     TBr = Br*0.0001 // Gauss to Tesla (scalar)
 
     V = volume(D,t) // volume(D[in],t[in])
-    m = V*TBr/u0 // in A m2 (scalar)
+    
+    // Correction factor due to unmodeled dynamics
+    
+    CF = 1/4.74
+    
+    m = CF*V*TBr/u0 // in A m2 (scalar)
+    
     
 endfunction
