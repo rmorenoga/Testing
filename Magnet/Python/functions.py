@@ -235,6 +235,99 @@ def forceatpointconnector(case,x,y,z,dirvec):
 		return fx,fy,fz
 
 
+def forceonconnector(x,dirvec):
+	# Calculates the force and momentum of one connector placed at
+	# the origin facing in direction i=1,j=0,k=0
+	# on another connector placed in postion x
+	# and orientation dirvec
+	# x is a numpy array
+	# dirvec is a numpy array that will be normalized
+
+	# Arrange magnets in second connector
+	# Center of connector
+	center = x
+	# Initial direction of connector i=1,j=0,k=0
+	initdir = np.array([1,0,0])
+
+	# Normalize dirvec
+	dirvec = dirvec/np.linalg.norm(dirvec)
+
+	# Find rotation matrix from initdir to dirvec
+	if np.array_equal(initdir,dirvec):
+		R = np.identity(3)
+	else:
+    	# Find axis of rotation
+		v = np.cross(initdir,dirvec)
+    	# Find sine of rotation angle
+		s = np.linalg.norm(v)
+    	# Find cosine of rotation angle
+		c = initdir.dot(dirvec)
+    	# Form skew-symetric cross product matrix from v
+		skv = np.array([[0,-v[2],v[1]],[v[2],0,-v[0]],[-v[1],v[0],0]])
+		#skv = np.roll(np.roll(np.diag(v.flatten()), 1, 1), -1, 0)
+		#skv = skv - skv.T
+    	# Find rotation matrix
+		R = np.identity(3) + skv + ((1-c)/(s**2))*(skv.dot(skv))
+
+	# Original positions from center
+	#Position of magnet 10
+	rc10Vec = np.array([0.0,0.0,0.018])
+
+	#Position of magnet 11
+	rc11Vec = np.array([0.0,0.018,0.0])
+
+	#Position of magnet 12
+	rc12Vec = np.array([0.0,0.0,-0.018])
+
+	#Position of magnet 13
+	rc13Vec = np.array([0.0,-0.018,0.0])
+
+	# Rotated positions from center
+	rc10Vec = R.dot(rc10Vec)
+	rc11Vec = R.dot(rc11Vec)
+	rc12Vec = R.dot(rc12Vec)
+	rc13Vec = R.dot(rc13Vec)
+
+	# Positions from origin
+	r10Vec = rc10Vec + center
+	r11Vec = rc11Vec + center
+	r12Vec = rc12Vec + center
+	r13Vec = rc13Vec + center
+
+	#Calculate force on each magnet
+	fx10,fy10,fz10 = forceatpointconnector(2,r10Vec[0],r10Vec[1],r10Vec[2],dirvec)
+	fx11,fy11,fz11 = forceatpointconnector(2,r11Vec[0],r11Vec[1],r11Vec[2],dirvec)
+	fx12,fy12,fz12 = forceatpointconnector(2,r12Vec[0],r12Vec[1],r12Vec[2],dirvec)
+	fx13,fy13,fz13 = forceatpointconnector(2,r13Vec[0],r13Vec[1],r13Vec[2],dirvec)
+
+	f10 = np.array([fx10,fy10,fz10])
+	f11 = np.array([fx11,fy11,fz11])
+	f12 = np.array([fx12,fy12,fz12])
+	f13 = np.array([fx13,fy13,fz13])
+
+	# Total force on connector
+	F = f10 + f11 + f12 + f13
+
+	# Find moment due to each magnet from center of connector
+	m10 = np.cross(rc10Vec,f10)
+	m11 = np.cross(rc11Vec,f11)
+	m12 = np.cross(rc12Vec,f12)
+	m13 = np.cross(rc13Vec,f13)
+
+	# Total moment on the center of connector
+	M = m10 + m11 + m12 + m13
+
+	return (F,M,f10,f11,f12,f13,m10,m11,m12,m13,r10Vec,r11Vec,r12Vec,r13Vec)
+
+
+
+
+
+
+	
+
+
+
 
 
 
