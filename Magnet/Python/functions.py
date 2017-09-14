@@ -31,8 +31,7 @@ def dipMoment(Br, V):
 	when calculating the moment
 	"""
 
-	CF = 1.0/14.891
-
+	CF = 1.0/21.343
 	m = m*CF
 
 	return m

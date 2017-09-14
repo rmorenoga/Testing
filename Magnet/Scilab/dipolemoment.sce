@@ -13,7 +13,7 @@ function m = dipolemoment(Br,D,t)
     
     // Correction factor due to unmodeled dynamics
     
-    CF = 1/4.74
+    CF = 1/6.7934
     
     m = CF*V*TBr/u0 // in A m2 (scalar)
     
