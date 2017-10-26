@@ -61,14 +61,6 @@ function backpropagateerror(ann,outputs,weightedsums,input,desired,params)
     return errors
 end
 
-function inittableoftables(size)
-    local matrix = {}
-    for i=1,size do
-        matrix[i] = {}
-    end
-    
-    return matrix
-end
 
 function crossEntropyError(input,weightedsum,output,desired,params)  
     local errors = {}

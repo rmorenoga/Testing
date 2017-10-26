@@ -97,5 +97,14 @@ function sigmoidderivate(x)
     
 end    
      
+function inittableoftables(size)
+    local matrix = {}
+    for i=1,size do
+        matrix[i] = {}
+    end
+    
+    return matrix
+end
+     
         
          

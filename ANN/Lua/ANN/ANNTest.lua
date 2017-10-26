@@ -10,7 +10,7 @@ annLayers = {3,5,5,2}
 
 ann = createANN(annLayers)
 
-printANN(ann)
+--printANN(ann)
 
 weights = getANNWeights(ann)
 
@@ -24,13 +24,23 @@ morpho = getAnnMorphology(ann)
 
 extWeights ={}
 
-for i=1,50 do
-    extWeights[i] = 0.5
-end
+--for i=1,50 do
+--    extWeights[i] = 0.5
+--end
 
-oweights = organizeWeights(ann,extWeights)
+weightList = getWeightListfromANN(ann)
 
-for i=1,#oweights do
+ann2 = createANNfromWeightsList(morpho,weightList)
+
+printANN(ann2)
+
+--weightList = getWeightListfromANN(ann2)
+
+--for k,v in pairs(weightList) do print(k,v) end
+
+print('1111111111111111111111111111111111')
+
+--[[for i=1,#oweights do
         for j=1,#oweights[i] do
             local str = ""
             for k=1,i do
@@ -41,7 +51,7 @@ for i=1,#oweights do
             end
             print(str)
         end
-    end        
+    end ]]       
 
 
 
@@ -49,9 +59,13 @@ for k,v in pairs(morpho) do print(k,v) end
 
 inputs = {0.2,0.8,0.33}
 
-output = propagateANN(ann,inputs)
+output = propagateANN(ann2,inputs)
 
 for k,v in pairs(output) do print(k,v) end
+
+
+print('&&&&&&&&&&&&&&&&&&&&&&&&&')
+
 
 
 function modifytable(table1)

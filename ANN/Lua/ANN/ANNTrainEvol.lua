@@ -1,6 +1,5 @@
 require "ANN"
-require "ANNRead"
-require "ANNTrain"
+
 
 
 function ModifyAnnWeights(ann,weights)
@@ -16,32 +15,44 @@ function ModifyAnnWeights(ann,weights)
 end
 
 
-function organizeWeights(ann,extWeights)
-
-    local morpho = getAnnMorphology(ann)
+function createANNfromWeightsList(morpho,weightList)
     
-    local oweights = inittableoftables(#morpho-1)
+    local ann = inittableoftables(#morpho-1)
     
     local k=1
     
     for i=1,#morpho-1 do
-        oweights[i] = inittableoftables(morpho[i+1])
+        ann[i] = inittableoftables(morpho[i+1])
         for j=1,morpho[i+1] do
             for p=1,morpho[i] do
-                oweights[i][j][p] = extWeights[k]
+                ann[i][j][p] = weightList[k]
                 k=k+1
             end  
         end
         
     end
     
-    for i=1,#oweights do
-        print('6666666666666')
-        for j=1,#oweights[i] do
-            print(oweights[i][j])
-        end
-    end
-    
-    return oweights
+    return ann
 
 end
+
+function getWeightListfromANN(ann)
+
+    local weightList = {}
+    
+    p=1
+    
+    for i=1,#ann do
+        for j=1,#ann[i] do
+            for k=1,#ann[i][j] do
+               weightList[p] = ann[i][j][k]
+               p=p+1
+            end
+        end
+    end      
+
+    return weightList
+
+end 
+
+    

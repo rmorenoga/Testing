@@ -1,5 +1,5 @@
 require "ANN"
-require "ANNTrain"
+
 
 function getLayerNumber(ann)
 
