@@ -1,5 +1,7 @@
 require "ANN"
 require "ANNTrain"
+require "ANNRead"
+require "ANNTrainEvol"
 
 math.randomseed(os.time())
 
@@ -7,6 +9,43 @@ math.randomseed(os.time())
 annLayers = {3,5,5,2}
 
 ann = createANN(annLayers)
+
+printANN(ann)
+
+weights = getANNWeights(ann)
+
+weights[1][2][3] = 5
+
+ModifyAnnWeights(ann,weights)
+
+printANN(ann)
+
+morpho = getAnnMorphology(ann)
+
+extWeights ={}
+
+for i=1,50 do
+    extWeights[i] = 0.5
+end
+
+oweights = organizeWeights(ann,extWeights)
+
+for i=1,#oweights do
+        for j=1,#oweights[i] do
+            local str = ""
+            for k=1,i do
+                str = str.."    "
+            end
+            for k=1,#oweights[i][j] do
+                str = str..oweights[i][j][k]..", "
+            end
+            print(str)
+        end
+    end        
+
+
+
+for k,v in pairs(morpho) do print(k,v) end
 
 inputs = {0.2,0.8,0.33}
 
@@ -62,4 +101,3 @@ for j=1,#inputs do
 end 
 end
   
-
