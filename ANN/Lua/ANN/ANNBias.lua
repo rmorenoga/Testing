@@ -11,6 +11,7 @@ function createANN(layersizes)
 end
 
 function createLayer(inputs, outputs)
+   
     local layer = {}
     
     for i=1,outputs do
@@ -21,17 +22,20 @@ function createLayer(inputs, outputs)
     return layer
     
 end
-        
+
 function createPerceptron(size)
 
+    
     local weights = {}
+    local bias = 6*math.random()-3
     
     for i=1,size do 
         local weight = 6*math.random()-3
         table.insert(weights,weight)
     end
+    
    
-    return weights
+    return {weights,bias}
     
 end
 
@@ -52,7 +56,7 @@ function propagateLayer(layer,inputs)
     local outputs = {}
     
     for i=1,#layer do
-        local output = activate(calculateweightedsum(layer[i],inputs))
+        local output = activate(calculateweightedsum(layer[i][1],inputs) + layer[i][2])
         table.insert(outputs,output)
     end
     
@@ -83,20 +87,7 @@ function calculateweightedsum(perceptron,inputs)
    return sum
 
 end
-   
-function derivate(x)
 
-    return sigmoidderivate(x)
-
-end
-
-function sigmoidderivate(x)
-    
-    local value  = sigmoid(x)
-    return value*(1-value)
-    
-end    
-     
 function inittableoftables(size)
     local matrix = {}
     for i=1,size do
@@ -106,5 +97,3 @@ function inittableoftables(size)
     return matrix
 end
      
-        
-         

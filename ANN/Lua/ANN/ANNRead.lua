@@ -1,4 +1,4 @@
-require "ANN"
+--require "ANN"
 
 
 function getLayerNumber(ann)
@@ -14,7 +14,7 @@ function getAnnMorphology(ann)
     morpho[1] = #ann[1][1]
     
     for i=1,#ann do
-        morpho[i+1] = #ann[i]
+        morpho[i] = #ann[i][1]
     end
     
     return morpho

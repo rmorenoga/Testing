@@ -1,44 +1,81 @@
-require "ANN"
-require "ANNTrain"
-require "ANNRead"
-require "ANNTrainEvol"
+require "ANNBias"
+--require "ANNTrain"
+require "ANNBiasRead"
+require "ANNBiasEvol"
 
 math.randomseed(os.time())
 
 
-annLayers = {3,5,5,2}
+annLayers = {2,2,2}
 
 ann = createANN(annLayers)
 
---printANN(ann)
+inputs = {0.1,0.2}
 
-weights = getANNWeights(ann)
+outputs = propagateANN(ann,inputs)
 
-weights[1][2][3] = 5
-
-ModifyAnnWeights(ann,weights)
-
-printANN(ann)
+for k,v in pairs(outputs) do print(k,v) end 
 
 morpho = getAnnMorphology(ann)
 
-extWeights ={}
+for k,v in pairs(morpho) do print(k,v) end
+
+printANN(ann)
+
+
+
+annLayers = {2,2,2}
+
+weightlist = {1.1,1.2,1.3,1.4,2.5,2.6,1.7,1.8,2.9,2.11,2.12,2.13}
+
+ann = createANNfromWeightsList(annLayers,weightList)
+
+printANN(ann)
+
+printWeightListformANN(ann)
+
+--for k,v in pairs(weightlist) do print(k,v) end
+
+
+
+--printANN(ann)
+
+--weights = getANNWeights(ann)
+
+--weights[1][2][3] = 5
+
+--ModifyAnnWeights(ann,weights)
+
+--weightList = getWeightListfromANN(ann)
+
+--print(#weightList)
+
+--
+
+--printANN(ann)
+
+--
+
+
+--morpho = getAnnMorphology(ann)
+
+--extWeights ={}
 
 --for i=1,50 do
 --    extWeights[i] = 0.5
 --end
 
-weightList = getWeightListfromANN(ann)
+--weightList = getWeightListfromANN(ann)
 
-ann2 = createANNfromWeightsList(morpho,weightList)
+--ann2 = createANNfromWeightsList(morpho,weightList)
 
-printANN(ann2)
+--printANN(ann2)
 
 --weightList = getWeightListfromANN(ann2)
 
 --for k,v in pairs(weightList) do print(k,v) end
 
-print('1111111111111111111111111111111111')
+--print('1111111111111111111111111111111111')
 
 --[[for i=1,#oweights do
         for j=1,#oweights[i] do
@@ -55,7 +92,7 @@ print('1111111111111111111111111111111111')
 
 
 
-for k,v in pairs(morpho) do print(k,v) end
+--[[for k,v in pairs(morpho) do print(k,v) end
 
 inputs = {0.2,0.8,0.33}
 
@@ -113,5 +150,6 @@ for j=1,#inputs do
          realoutput = propagateANN(ann,inputs[j])
          for k,v in pairs(realoutput) do print(k,v) end
 end 
-end
+end]]
   
+

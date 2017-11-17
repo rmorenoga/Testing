@@ -1,6 +1,4 @@
-require "ANN"
-
-
+--require "ANN"
 
 function ModifyAnnWeights(ann,weights)
 
@@ -54,5 +52,23 @@ function getWeightListfromANN(ann)
     return weightList
 
 end 
+
+function printWeightListformANN(ann)
+
+    local weightlist = getWeightListfromANN(ann)
+    
+    str = ""
+    
+    for i=1,#weightlist do
+        str = str..weightlist[i]..", "
+    end
+    
+    print(#weightlist)
+    print(str)
+    
+end
+    
+        
+    
 
     
