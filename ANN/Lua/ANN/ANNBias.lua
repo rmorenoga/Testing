@@ -88,6 +88,19 @@ function calculateweightedsum(perceptron,inputs)
 
 end
 
+function derivate(x)
+
+    return sigmoidderivate(x)
+
+end
+
+function sigmoidderivate(x)
+    
+    local value  = sigmoid(x)
+    return value*(1-value)
+    
+end   
+
 function inittableoftables(size)
     local matrix = {}
     for i=1,size do

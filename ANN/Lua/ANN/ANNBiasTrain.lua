@@ -1,4 +1,3 @@
-
 function trainANN(ann,input,desiredoutput,params)
 
     local outputs,weightedsums = setup(ann,input)
@@ -23,24 +22,17 @@ function setup(ann,input)
         table.insert(outputs,layeroutput)
     end
     
-    --print(#ann)
-    --for i=1,#outputs do
-     --   print(#outputs[i])
-   -- end
-        
-    
     return outputs,weightedsums
     
 end
-    
-    
+
 function layersetup(layer,input)
     
     local weightedsums = {}
     local outputs = {}
 
     for i=1,#layer do
-        table.insert(weightedsums,calculateweightedsum(layer[i],input))
+        table.insert(weightedsums,calculateweightedsum(layer[i][1],input)+layer[i][2])
         table.insert(outputs,activate(weightedsums[i]))
     end
         
@@ -60,25 +52,6 @@ function backpropagateerror(ann,outputs,weightedsums,input,desired,params)
     return errors
 end
 
-
-function crossEntropyError(input,weightedsum,output,desired,params)  
-    local errors = {}
-    for i=1,#desired do
-        table.insert(errors,output[i]-desired[i])
-        local sum = 0
-        for j=1,#input do
-            sum = sum + (input[j]*errors[i])
-        end
-        if (errors[i] > 0) then 
-            sum = sum*params[2]
-        end
-        errors[i] = sum*derivate(weightedsum[i])     
-    end
-        
-    return errors
-
-end
-
 function SE(input,weightedsum,output,desired,params)
    local errors = {}
    for i=1,#desired do
@@ -92,7 +65,6 @@ end
 
 function calculateOutputLayerError(input,weightedsum,output,desired,params)
     
-    --return crossEntropyError(input,weightedsum,output,desired,params)
     return SE(input,weightedsum,output,desired,params)
 
 end
@@ -103,22 +75,23 @@ function backpropagaterrorLayer(layer,weightedsum,errors)
     for i=1,#weightedsum do
         table.insert(backerror,0)
         for j=1,#layer do
-            backerror[i] = backerror[i] + (errors[j]*layer[j][i])
+            backerror[i] = backerror[i] + (errors[j]*layer[j][1][i])
         end
         backerror[i] = backerror[i]*derivate(weightedsum[i])
     end
     return backerror
 end
 
-        
 function trainLayer(layer,errors,inputs,params)
 
     for i=1,#layer do
-        for j=1,#layer[i] do
-            layer[i][j] = layer[i][j] - (params[1]*errors[i]*inputs[j])
-            --layer[i][j][2] = layer[i][j][2] - (params[1]*errors[i])-- for bias training
+        for j=1,#layer[i][1] do
+            layer[i][1][j] = layer[i][1][j] - (params[1]*errors[i]*inputs[j])
         end
+        layer[i][2] = layer[i][2] - (params[1]*errors[i])-- for bias training
     end            
 
 end
-        
+
+
+

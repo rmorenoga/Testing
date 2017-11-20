@@ -22,19 +22,23 @@ for k,v in pairs(morpho) do print(k,v) end
 
 printANN(ann)
 
-
+printWeightListformANN(ann)
 
 annLayers = {2,2,2}
 
-weightlist = {1.1,1.2,1.3,1.4,2.5,2.6,1.7,1.8,2.9,2.11,2.12,2.13}
+other = {1.1,1.2,1.3,1.4,2.5,2.6,1.7,1.8,2.9,2.11,2.12,2.13}
 
-ann = createANNfromWeightsList(annLayers,weightList)
+ann = createANNfromWeightsList(annLayers,other)
 
 printANN(ann)
 
+outputs = propagateANN(ann,inputs)
+
 printWeightListformANN(ann)
 
---for k,v in pairs(weightlist) do print(k,v) end
+morpho = getAnnMorphology(ann)
+
+for k,v in pairs(morpho) do print(k,v) end
 
 
 

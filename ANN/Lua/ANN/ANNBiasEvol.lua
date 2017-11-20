@@ -1,4 +1,4 @@
-function createANNfromWeightsList(layersizes,weightList)
+function createANNfromWeightsList(layersizes,weightlist)
     
     local ann = {}
     
