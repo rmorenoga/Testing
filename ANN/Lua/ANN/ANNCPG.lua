@@ -5,7 +5,7 @@ require "ANNinputs"
 
 math.randomseed(os.time())
 
-annLayers = {2,5,1}
+--annLayers = {2,5,1}
 --annLayers = {19,20,6}
 annLayers = {12,12,6}
 
