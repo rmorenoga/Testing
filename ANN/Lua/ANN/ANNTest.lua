@@ -6,9 +6,11 @@ require "ANNBiasEvol"
 math.randomseed(os.time())
 
 
-annLayers = {2,2,2}
+annLayers = {12,12,4}
 
 ann = createANN(annLayers)
+
+printWeightListformANN(ann)
 
 inputs = {0.1,0.2}
 
